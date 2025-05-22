@@ -1,12 +1,31 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/Home.module.css";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { Skeleton } from "antd";
 
 export default function Home() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return (
+            <div className={styles.container}>
+                <Skeleton.Avatar active size={300} shape="circle" className={styles.image} />
+                <Skeleton active paragraph={{ rows: 4 }} />
+                <Skeleton.Button active size="large" />
+            </div>
+        );
+    }
     return (
         <div className={styles.container}>
-            <Image className={styles.image} src="/images/maiko.png" alt="Maiko Xikixiki" width={100} height={100} />
+            <Image className={styles.image} src="/images/maiko.png" alt="Maiko Xikixiki" width={300} height={300} />
             <h1 className={styles.title}> Maiko Xikixiki Bahia</h1>
             <div className={styles.description}>
                 <p>Tá perdido no código? Relaxa e vem de Maiko, que vamos te mostrar a usar:</p>
@@ -24,7 +43,7 @@ export default function Home() {
                     <li>Skeleton</li>
                 </ul>
             </div>
-            <Link href="/countries" prefetch={true}>
+            <Link href="/countries">
                 <button className={styles.button}>Acessar Países</button>
             </Link>
         </div>

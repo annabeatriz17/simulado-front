@@ -2,5 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font), sans-serif, Arial, Helvetica, sans-serif;
+    font-family: var(--font-family, serif, arial, helvetica, sans-serif);
+}
+
+.toast-custom {
+    background-color: #ff66a3 !important;
+    color: white !important; 
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(255, 102, 163, 0.4) !important; 
+}
+
+.toast-custom .Toastify__progress-bar {
+    background-color: #ffcce0 !important; 
 }
